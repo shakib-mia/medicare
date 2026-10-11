@@ -108,7 +108,7 @@ export default function Hero() {
 									aria-hidden="true"
 									viewBox="0 0 220 12"
 									fill="none"
-									className="absolute -bottom-2 left-0 w-full overflow-visible text-teal-200"
+									className="absolute -bottom-2 left-0 w-full overflow-visible text-teal-500"
 									initial={{
 										opacity: shouldReduceMotion ? 1 : 0,
 									}}

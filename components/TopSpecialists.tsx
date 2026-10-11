@@ -1,100 +1,221 @@
 "use client";
 
 import { useRef } from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import Image from "next/image";
-import { Star, ChevronLeft, ChevronRight } from "lucide-react";
+import {
+	Star,
+	ChevronLeft,
+	ChevronRight,
+	ArrowUpRight,
+	Stethoscope,
+} from "lucide-react";
 import Reveal from "./Reveal";
 
+const ease = [0.16, 1, 0.3, 1] as const;
+
 const specialists = [
-  {
-    name: "Dr. Travis Oman",
-    role: "Opthalmologist",
-    img: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?q=80&w=600&auto=format&fit=crop",
-  },
-  {
-    name: "Dr. Annah Ray",
-    role: "Dentician",
-    img: "https://images.unsplash.com/photo-1594824476967-48c8b964273f?q=80&w=600&auto=format&fit=crop",
-  },
-  {
-    name: "Dr. Richard Brook",
-    role: "Gastroenterlogist",
-    img: "https://images.unsplash.com/photo-1537368910025-700350fe46c7?q=80&w=600&auto=format&fit=crop",
-  },
-  {
-    name: "Dr. Vivian Monroe",
-    role: "Pediatry Surgeon",
-    img: "https://images.unsplash.com/photo-1651008376811-b90baee60c1f?q=80&w=600&auto=format&fit=crop",
-  },
+	{
+		name: "Dr. Travis Oman",
+		role: "Ophthalmologist",
+		img: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?q=80&w=600&auto=format&fit=crop",
+	},
+	{
+		name: "Dr. Annah Ray",
+		role: "Dentist",
+		img: "https://images.unsplash.com/photo-1594824476967-48c8b964273f?q=80&w=600&auto=format&fit=crop",
+	},
+	{
+		name: "Dr. Richard Brook",
+		role: "Gastroenterologist",
+		img: "https://images.unsplash.com/photo-1537368910025-700350fe46c7?q=80&w=600&auto=format&fit=crop",
+	},
+	{
+		name: "Dr. Vivian Monroe",
+		role: "Pediatric Surgeon",
+		img: "https://images.unsplash.com/photo-1651008376811-b90baee60c1f?q=80&w=600&auto=format&fit=crop",
+	},
 ];
 
 export default function TopSpecialists() {
-  const scroller = useRef<HTMLDivElement>(null);
+	const scroller = useRef<HTMLDivElement>(null);
+	const shouldReduceMotion = useReducedMotion();
 
-  const scroll = (dir: number) => {
-    scroller.current?.scrollBy({ left: dir * 320, behavior: "smooth" });
-  };
+	const scroll = (direction: number) => {
+		if (!scroller.current) return;
 
-  return (
-    <section id="specialists" className="py-20">
-      <div className="section-max container-px">
-        <Reveal className="flex items-center justify-between mb-10">
-          <h2 className="font-display font-bold text-3xl sm:text-4xl text-ink">
-            Top Specialist
-          </h2>
-          <div className="hidden sm:flex gap-2">
-            <button
-              onClick={() => scroll(-1)}
-              aria-label="Scroll left"
-              className="w-10 h-10 rounded-full border border-teal-100 flex items-center justify-center text-teal-600 hover:bg-teal-50 transition-colors"
-            >
-              <ChevronLeft size={18} />
-            </button>
-            <button
-              onClick={() => scroll(1)}
-              aria-label="Scroll right"
-              className="w-10 h-10 rounded-full bg-teal-500 flex items-center justify-center text-white hover:bg-teal-600 transition-colors"
-            >
-              <ChevronRight size={18} />
-            </button>
-          </div>
-        </Reveal>
+		const firstCard = scroller.current.querySelector<HTMLElement>(
+			"[data-specialist-card]",
+		);
 
-        <div
-          ref={scroller}
-          className="flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-none"
-          style={{ scrollbarWidth: "none" }}
-        >
-          {specialists.map((s, i) => (
-            <Reveal key={s.name} delay={i * 0.08} className="snap-start shrink-0 w-[240px]">
-              <motion.div
-                whileHover={{ y: -6 }}
-                className="rounded-2xl overflow-hidden shadow-card bg-white border border-teal-50"
-              >
-                <div className="relative w-full aspect-[4/3]">
-                  <Image src={s.img} alt={s.name} fill sizes="240px" className="object-cover" />
-                  <span className="absolute top-3 left-3 bg-white/90 text-[11px] font-bold px-2 py-1 rounded-full flex items-center gap-1 text-ink">
-                    <Star size={11} className="fill-teal-500 text-teal-500" /> 5.0
-                  </span>
-                </div>
-                <div className="p-5 text-center">
-                  <h3 className="font-semibold text-ink text-sm">{s.name}</h3>
-                  <p className="text-xs text-mist mt-1">{s.role}</p>
-                  <motion.a
-                    whileTap={{ scale: 0.96 }}
-                    href="#appointment"
-                    className="block mt-4 bg-teal-500 text-white text-xs font-semibold rounded-lg py-2.5 hover:bg-teal-600 transition-colors"
-                  >
-                    Book Now
-                  </motion.a>
-                  <p className="text-[11px] text-mist mt-2">120 Reviews</p>
-                </div>
-              </motion.div>
-            </Reveal>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
+		const cardWidth = firstCard?.offsetWidth ?? 260;
+		const gap = 24;
+
+		scroller.current.scrollBy({
+			left: direction * (cardWidth + gap),
+			behavior: shouldReduceMotion ? "instant" : "smooth",
+		});
+	};
+
+	return (
+		<section
+			id="specialists"
+			className="relative overflow-hidden py-16 sm:py-20 lg:py-24"
+		>
+			{/* Soft background accent */}
+			<div
+				aria-hidden="true"
+				className="pointer-events-none absolute -right-40 top-12 h-80 w-80 rounded-full bg-teal-100/30 blur-3xl"
+			/>
+
+			<div className="section-max container-px relative">
+				{/* Section heading */}
+				<Reveal>
+					<div className="mb-8 flex flex-col gap-5 sm:mb-10 sm:flex-row sm:items-end sm:justify-between">
+						<div>
+							<span className="mb-4 inline-flex items-center gap-2 rounded-full border border-teal-100 bg-white/80 px-3.5 py-2 text-xs font-semibold tracking-wide text-teal-700 shadow-sm sm:text-sm">
+								<span className="h-2 w-2 rounded-full bg-teal-500" />
+								Meet Our Medical Team
+							</span>
+
+							<h2 className="font-display text-3xl font-bold leading-tight tracking-tight text-ink sm:text-4xl lg:text-[2.75rem]">
+								Our Top{" "}
+								<span className="text-teal-500">
+									Specialists
+								</span>
+							</h2>
+
+							<p className="mt-3 max-w-lg text-sm leading-7 text-mist sm:text-base sm:leading-8">
+								Meet dedicated medical professionals committed
+								to your health and well-being.
+							</p>
+						</div>
+
+						{/* Carousel controls */}
+						<div className="flex items-center gap-2 self-start sm:self-auto">
+							<button
+								type="button"
+								onClick={() => scroll(-1)}
+								aria-label="View previous specialists"
+								className="flex h-11 w-11 items-center justify-center rounded-full border border-teal-100 bg-white text-teal-600 shadow-sm transition-colors duration-300 hover:border-teal-200 hover:bg-teal-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2"
+							>
+								<ChevronLeft size={19} />
+							</button>
+
+							<button
+								type="button"
+								onClick={() => scroll(1)}
+								aria-label="View next specialists"
+								className="flex h-11 w-11 items-center justify-center rounded-full bg-teal-500 text-white shadow-soft transition-colors duration-300 hover:bg-teal-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2"
+							>
+								<ChevronRight size={19} />
+							</button>
+						</div>
+					</div>
+				</Reveal>
+
+				{/* Specialists carousel */}
+				<div
+					ref={scroller}
+					role="region"
+					aria-label="Medical specialists"
+					tabIndex={0}
+					className="flex snap-x snap-mandatory gap-5 overflow-x-auto overflow-y-hidden pb-5 pt-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-4 sm:gap-6"
+					style={{
+						scrollbarWidth: "none",
+						scrollBehavior: shouldReduceMotion ? "auto" : "smooth",
+					}}
+				>
+					{specialists.map((specialist, index) => (
+						<Reveal
+							key={specialist.name}
+							delay={shouldReduceMotion ? 0 : index * 0.08}
+							className="w-[min(78vw,280px)] shrink-0 snap-start sm:w-[260px] lg:w-[calc((100%-4.5rem)/4)]"
+						>
+							<motion.article
+								data-specialist-card
+								whileHover={
+									shouldReduceMotion
+										? undefined
+										: {
+												y: -5,
+												transition: {
+													duration: 0.3,
+													ease,
+												},
+											}
+								}
+								className="group h-full overflow-hidden rounded-2xl border border-teal-50 bg-white shadow-sm transition-[box-shadow,border-color] duration-300 hover:border-teal-100 hover:shadow-card sm:rounded-[1.5rem]"
+							>
+								{/* Doctor image */}
+								<div className="relative aspect-[4/3] overflow-hidden bg-teal-50">
+									<Image
+										src={specialist.img}
+										alt={specialist.name}
+										fill
+										sizes="(max-width: 640px) 78vw, (max-width: 1024px) 260px, 22vw"
+										className="object-cover object-center transition-transform duration-[1000ms] ease-out group-hover:scale-[1.04] motion-reduce:transform-none"
+									/>
+
+									<div className="absolute inset-0 bg-gradient-to-t from-slate-950/25 via-transparent to-transparent opacity-70" />
+
+									{/* Rating badge */}
+									<div className="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full border border-white/70 bg-white/90 px-2.5 py-1.5 text-[11px] font-bold text-ink shadow-sm backdrop-blur-md">
+										<Star
+											size={12}
+											className="fill-teal-500 text-teal-500"
+										/>
+										5.0
+									</div>
+
+									{/* Specialty badge */}
+									<div className="absolute bottom-3 left-3 inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-slate-950/35 px-2.5 py-1.5 text-[10px] font-medium text-white backdrop-blur-md">
+										<Stethoscope size={12} />
+										Specialist
+									</div>
+								</div>
+
+								{/* Doctor details */}
+								<div className="flex h-[190px] flex-col p-4 sm:p-5">
+									<h3 className="font-display text-base font-bold leading-snug text-ink">
+										{specialist.name}
+									</h3>
+
+									<p className="mt-1.5 text-xs leading-5 text-mist sm:text-sm">
+										{specialist.role}
+									</p>
+
+									<div className="mt-auto pt-5">
+										<motion.a
+											href="#appointment"
+											whileTap={
+												shouldReduceMotion
+													? undefined
+													: { scale: 0.985 }
+											}
+											transition={{
+												duration: 0.2,
+												ease,
+											}}
+											className="group/button flex w-full items-center justify-center gap-2 rounded-xl bg-teal-500 px-4 py-3 text-xs font-semibold text-white transition-colors duration-300 hover:bg-teal-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2"
+										>
+											Book an Appointment
+											<ArrowUpRight
+												size={15}
+												className="transition-transform duration-300 group-hover/button:translate-x-0.5 group-hover/button:-translate-y-0.5 motion-reduce:transform-none"
+											/>
+										</motion.a>
+
+										<p className="mt-3 text-center text-[11px] text-mist">
+											Professional, patient-focused care
+										</p>
+									</div>
+								</div>
+							</motion.article>
+						</Reveal>
+					))}
+				</div>
+			</div>
+		</section>
+	);
 }

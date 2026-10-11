@@ -11,19 +11,18 @@ import PartnerLogos from "@/components/PartnerLogos";
 import Footer from "@/components/Footer";
 
 export default function Home() {
-  return (
-    <main className="overflow-x-hidden">
-      <Navbar />
-      <Hero />
-      <FocusCards />
-      <Departments />
-      <TopSpecialists />
-      <Benefits />
-      <Testimonials />
-      <CTABanner />
-      <BlogTrending />
-      <PartnerLogos />
-      <Footer />
-    </main>
-  );
+	return (
+		<main className="overflow-x-hidden">
+			<Hero />
+			<FocusCards />
+			<Departments />
+			<TopSpecialists />
+			<Benefits />
+			<Testimonials />
+			<CTABanner />
+			<BlogTrending />
+			<PartnerLogos />
+			<Footer />
+		</main>
+	);
 }

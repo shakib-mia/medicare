@@ -1,0 +1,227 @@
+[
+	{
+		"id": "blog-001",
+		"slug": "preventive-healthcare-at-every-stage",
+		"title": "Why Preventive Healthcare Matters at Every Stage of Life",
+		"excerpt": "Learn how routine checkups, preventive screenings, and conversations with healthcare professionals can support informed health decisions.",
+		"category": "Preventive Care",
+		"author": {
+			"name": "Medicare Editorial Team",
+			"role": "Health Education"
+		},
+		"publishedAt": "2026-09-15",
+		"updatedAt": "2026-09-15",
+		"readTime": 6,
+		"image": "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=1200&auto=format&fit=crop",
+		"imageAlt": "Healthcare professional discussing preventive care",
+		"featured": true,
+		"trending": true,
+		"tags": ["Preventive Care", "Health Checkups", "Wellness"],
+		"seo": {
+			"title": "Preventive Healthcare: Why Regular Checkups Matter | Medicare",
+			"description": "Understand the role of routine checkups and preventive healthcare in making informed health decisions."
+		},
+		"content": [
+			{
+				"type": "paragraph",
+				"text": "Preventive healthcare focuses on taking proactive steps to understand and maintain your health. Regular conversations with qualified healthcare professionals can help you make informed decisions about your individual needs."
+			},
+			{
+				"type": "heading",
+				"text": "What Does Preventive Healthcare Include?"
+			},
+			{
+				"type": "paragraph",
+				"text": "Depending on your age, medical history, and individual risk factors, preventive care may include routine checkups, recommended screenings, vaccinations, and discussions about nutrition, physical activity, and other lifestyle factors."
+			},
+			{
+				"type": "heading",
+				"text": "Make Healthcare Part of Your Routine"
+			},
+			{
+				"type": "paragraph",
+				"text": "Keeping track of appointments, sharing changes in your health, and asking questions during consultations can help you participate more actively in your care. Your healthcare professional can advise which services are appropriate for you."
+			}
+		]
+	},
+	{
+		"id": "blog-002",
+		"slug": "strength-training-for-healthy-aging",
+		"title": "How Strength Training Supports Healthy Aging",
+		"excerpt": "Explore how appropriate strength exercises can support muscle function, mobility, and everyday activities as you age.",
+		"category": "Fitness",
+		"author": {
+			"name": "Medicare Editorial Team",
+			"role": "Health Education"
+		},
+		"publishedAt": "2026-09-20",
+		"updatedAt": "2026-09-20",
+		"readTime": 5,
+		"image": "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=1200&auto=format&fit=crop",
+		"imageAlt": "Person exercising as part of a fitness routine",
+		"featured": false,
+		"trending": true,
+		"tags": ["Fitness", "Healthy Aging", "Physical Activity"],
+		"seo": {
+			"title": "Strength Training for Healthy Aging | Medicare",
+			"description": "Learn how suitable strength exercises may support mobility, muscle function, and daily activities as you age."
+		},
+		"content": [
+			{
+				"type": "paragraph",
+				"text": "Maintaining physical strength can help support everyday activities, from carrying groceries to getting up from a chair. Exercise plans should reflect each person's abilities, health, and fitness level."
+			},
+			{
+				"type": "heading",
+				"text": "Start With Exercises That Suit You"
+			},
+			{
+				"type": "paragraph",
+				"text": "Strength training can involve resistance bands, suitable weights, or bodyweight movements. Beginners can start gradually and focus on proper technique rather than increasing resistance too quickly."
+			},
+			{
+				"type": "heading",
+				"text": "Build a Sustainable Routine"
+			},
+			{
+				"type": "paragraph",
+				"text": "Consistency, recovery, and appropriate progression all matter. If you have a medical condition, balance difficulties, or concerns about exercising safely, consult a qualified healthcare professional before starting a new routine."
+			}
+		]
+	},
+	{
+		"id": "blog-003",
+		"slug": "understanding-preventive-health-screenings",
+		"title": "Understanding Preventive Health Screenings",
+		"excerpt": "Find out why screening recommendations vary and how to discuss the right options with your healthcare professional.",
+		"category": "Health Education",
+		"author": {
+			"name": "Medicare Editorial Team",
+			"role": "Health Education"
+		},
+		"publishedAt": "2026-09-24",
+		"updatedAt": "2026-09-24",
+		"readTime": 4,
+		"image": "https://images.unsplash.com/photo-1584982751601-97dcc096659c?q=80&w=1200&auto=format&fit=crop",
+		"imageAlt": "Healthcare professional working in a clinical environment",
+		"featured": false,
+		"trending": true,
+		"tags": ["Screening", "Prevention", "Health Education"],
+		"seo": {
+			"title": "Understanding Preventive Health Screenings | Medicare",
+			"description": "Discover what preventive screenings are and how to discuss screening recommendations with a healthcare professional."
+		},
+		"content": [
+			{
+				"type": "paragraph",
+				"text": "Health screenings are tests used to look for certain conditions before symptoms appear. Whether a screening is appropriate depends on factors such as age, medical history, and individual risk."
+			},
+			{
+				"type": "heading",
+				"text": "Are All Screenings Necessary for Everyone?"
+			},
+			{
+				"type": "paragraph",
+				"text": "No single screening schedule is right for everyone. The benefits, possible limitations, and recommended timing can differ depending on the test and the person."
+			},
+			{
+				"type": "heading",
+				"text": "Questions to Ask Your Healthcare Professional"
+			},
+			{
+				"type": "paragraph",
+				"text": "Ask which screenings are recommended for you, why they may be useful, how to prepare, and when you should expect results. Shared decision-making can help you understand your available options."
+			}
+		]
+	},
+	{
+		"id": "blog-004",
+		"slug": "small-daily-habits-for-better-wellbeing",
+		"title": "Small Daily Habits for Better Well-Being",
+		"excerpt": "Discover practical ways to build a sustainable routine around sleep, movement, balanced meals, and stress management.",
+		"category": "Healthy Living",
+		"author": {
+			"name": "Medicare Editorial Team",
+			"role": "Health Education"
+		},
+		"publishedAt": "2026-09-28",
+		"updatedAt": "2026-09-28",
+		"readTime": 6,
+		"image": "https://images.unsplash.com/photo-1490750967868-88aa4486c946?q=80&w=1200&auto=format&fit=crop",
+		"imageAlt": "Flowers representing a calm and balanced lifestyle",
+		"featured": false,
+		"trending": true,
+		"tags": ["Healthy Living", "Daily Habits", "Wellness"],
+		"seo": {
+			"title": "Small Daily Habits for Better Well-Being | Medicare",
+			"description": "Explore sustainable everyday habits that may support a balanced and healthy lifestyle."
+		},
+		"content": [
+			{
+				"type": "paragraph",
+				"text": "Healthy routines do not have to begin with dramatic changes. Small, manageable steps can make it easier to develop habits that fit your everyday life."
+			},
+			{
+				"type": "heading",
+				"text": "Focus on the Basics"
+			},
+			{
+				"type": "paragraph",
+				"text": "A regular sleep schedule, balanced meals, suitable physical activity, and time to unwind can all contribute to overall well-being. What works best will vary between individuals."
+			},
+			{
+				"type": "heading",
+				"text": "Choose Habits You Can Maintain"
+			},
+			{
+				"type": "paragraph",
+				"text": "Start with one realistic change and build gradually. Tracking your progress and adjusting your routine when necessary can make healthy habits easier to sustain over time."
+			}
+		]
+	},
+	{
+		"id": "blog-005",
+		"slug": "preparing-for-your-doctor-appointment",
+		"title": "How to Prepare for Your Doctor's Appointment",
+		"excerpt": "A few simple preparations can help you explain your concerns clearly and make better use of your consultation time.",
+		"category": "Patient Guide",
+		"author": {
+			"name": "Medicare Editorial Team",
+			"role": "Health Education"
+		},
+		"publishedAt": "2026-10-01",
+		"updatedAt": "2026-10-01",
+		"readTime": 4,
+		"image": "https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=1200&auto=format&fit=crop",
+		"imageAlt": "Medical professional preparing for a patient consultation",
+		"featured": false,
+		"trending": false,
+		"tags": ["Appointments", "Patient Guide", "Consultation"],
+		"seo": {
+			"title": "How to Prepare for a Doctor's Appointment | Medicare",
+			"description": "Learn how to organize your symptoms, medications, and questions before a medical consultation."
+		},
+		"content": [
+			{
+				"type": "paragraph",
+				"text": "Preparing for a medical appointment can help you communicate your concerns and remember the questions you want to ask."
+			},
+			{
+				"type": "heading",
+				"text": "Bring the Information You Need"
+			},
+			{
+				"type": "paragraph",
+				"text": "Consider noting your symptoms, when they began, current medications, allergies, and relevant medical history. Bring any records your healthcare professional has asked you to provide."
+			},
+			{
+				"type": "heading",
+				"text": "Ask Questions and Confirm Next Steps"
+			},
+			{
+				"type": "paragraph",
+				"text": "Ask for clarification whenever something is unclear. Before leaving, confirm any recommended follow-up, tests, medication instructions, or warning signs that require further attention."
+			}
+		]
+	}
+]

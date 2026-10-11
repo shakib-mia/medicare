@@ -1,90 +1,215 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
+import Link from "next/link";
+import { motion, useReducedMotion } from "framer-motion";
+import { ArrowRight, Clock3 } from "lucide-react";
 import Reveal from "./Reveal";
+import { getAllBlogs, getFeaturedBlog, getTrendingBlogs } from "@/lib/blogs";
 
-const trending = [
-  {
-    title: "Pumping Iron Improves Longevity in Older Adults",
-    copy: "Those who report weightlifting show reductions in all-cause and cardiovascular disease-related mortality.",
-    img: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=200&auto=format&fit=crop",
-  },
-  {
-    title: "Monkeypox Case Rates 5 Times Higher Among Black Americans",
-    copy: "Events, exhibitions, publications, and initiatives led by, featuring members of the School of Art community.",
-    img: "https://images.unsplash.com/photo-1591825381041-fddf2d75f9a1?q=80&w=200&auto=format&fit=crop",
-  },
-  {
-    title: "The Happy Hormone: Why We Shouldn't Mess With Dopamine",
-    copy: "Mailchimp emails and announcements sent out by the Yale School of Art's Communications Office.",
-    img: "https://images.unsplash.com/photo-1490750967868-88aa4486c946?q=80&w=200&auto=format&fit=crop",
-  },
-];
+function formatDate(date: string) {
+	return new Date(`${date.slice(0, 10)}T12:00:00`).toLocaleDateString(
+		"en-US",
+		{
+			month: "short",
+			day: "numeric",
+			year: "numeric",
+		},
+	);
+}
 
 export default function BlogTrending() {
-  return (
-    <section className="py-20">
-      <div className="section-max container-px">
-        <Reveal className="flex items-center justify-between mb-12">
-          <h2 className="font-display font-bold text-3xl sm:text-4xl text-ink max-w-md">
-            What you need to know about healthy living
-          </h2>
-          <a href="#" className="text-teal-600 text-sm font-semibold hidden sm:inline-flex items-center gap-1">
-            See More →
-          </a>
-        </Reveal>
+	const shouldReduceMotion = useReducedMotion();
 
-        <div className="grid lg:grid-cols-[1.1fr_1fr] gap-12">
-          <Reveal>
-            <motion.div whileHover={{ y: -4 }} className="cursor-default">
-              <div className="relative w-full aspect-[16/10] rounded-2xl overflow-hidden">
-                <Image
-                  src="https://images.unsplash.com/photo-1584982751601-97dcc096659c?q=80&w=900&auto=format&fit=crop"
-                  alt="Covid booster"
-                  fill
-                  sizes="600px"
-                  className="object-cover"
-                />
-              </div>
-              <div className="text-xs text-mist mt-4">April 26, 2022</div>
-              <h3 className="font-semibold text-lg text-ink mt-2 max-w-md">
-                Updated Covid boosters rolled out a month ago. Here&apos;s
-                how many Americans have gotten them.
-              </h3>
-              <p className="text-sm text-mist mt-2 max-w-md">
-                The CDC recommends that everyone over 12 get an updated
-                booster as long as at least two months have passed since
-                their last Covid shot.
-              </p>
-              <a href="#" className="text-teal-600 text-sm font-semibold mt-3 inline-block">
-                Read More
-              </a>
-            </motion.div>
-          </Reveal>
+	const featuredBlog = getFeaturedBlog() ?? getAllBlogs()[0];
+	const trendingBlogs = getTrendingBlogs(3);
 
-          <div>
-            <Reveal>
-              <h3 className="font-semibold text-ink mb-5">Whats Trending?</h3>
-            </Reveal>
-            <div className="flex flex-col gap-6">
-              {trending.map((t, i) => (
-                <Reveal key={t.title} delay={i * 0.1} className="flex gap-4">
-                  <div className="relative w-20 h-16 shrink-0 rounded-lg overflow-hidden">
-                    <Image src={t.img} alt={t.title} fill sizes="80px" className="object-cover" />
-                  </div>
-                  <div>
-                    <h4 className="text-sm font-semibold text-teal-700 leading-snug">
-                      {t.title}
-                    </h4>
-                    <p className="text-xs text-mist mt-1.5 leading-relaxed">{t.copy}</p>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
+	const cardMotion = shouldReduceMotion
+		? {}
+		: {
+				whileHover: { y: -4 },
+				transition: { duration: 0.25, ease: "easeOut" as const },
+			};
+
+	if (!featuredBlog) return null;
+
+	return (
+		<section className="py-20">
+			<div className="section-max container-px">
+				<Reveal>
+					<div className="mb-10 flex items-end justify-between gap-4">
+						<div>
+							<p className="mb-3 text-sm font-semibold uppercase tracking-[0.18em] text-teal-600">
+								Health &amp; Wellness
+							</p>
+
+							<h2 className="font-display max-w-2xl text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
+								What you need to know about healthy living
+							</h2>
+						</div>
+
+						<Link
+							href="/blogs"
+							className="hidden shrink-0 items-center gap-2 text-sm font-semibold text-ink transition-colors hover:text-teal-600 sm:inline-flex"
+						>
+							See More
+							<ArrowRight size={16} />
+						</Link>
+					</div>
+				</Reveal>
+
+				<div className="grid gap-12 lg:grid-cols-[1.1fr_1fr]">
+					{/* Featured article */}
+					<Reveal>
+						<motion.article
+							{...cardMotion}
+							className="group h-full overflow-hidden rounded-3xl border border-black/5 bg-white shadow-card"
+						>
+							<Link
+								href={`/blogs/${featuredBlog.slug}`}
+								className="flex h-full flex-col"
+							>
+								<div className="relative aspect-[16/10] overflow-hidden bg-black/5">
+									<Image
+										src={featuredBlog.image}
+										alt={featuredBlog.imageAlt}
+										fill
+										priority
+										sizes="(max-width: 1024px) 100vw, 55vw"
+										className="object-cover transition-transform duration-500 group-hover:scale-105"
+									/>
+
+									<span className="absolute left-5 top-5 rounded-full bg-white/95 px-4 py-2 text-xs font-semibold text-ink shadow-soft">
+										{featuredBlog.category}
+									</span>
+								</div>
+
+								<div className="flex flex-1 flex-col p-6 sm:p-8">
+									<div className="mb-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-mist">
+										<span>
+											{formatDate(
+												featuredBlog.publishedAt,
+											)}
+										</span>
+										<span className="flex items-center gap-1.5">
+											<Clock3 size={15} />
+											{featuredBlog.readTime} min read
+										</span>
+									</div>
+
+									<h3 className="font-display text-2xl font-semibold leading-snug text-ink transition-colors group-hover:text-teal-600 sm:text-3xl">
+										{featuredBlog.title}
+									</h3>
+
+									<p className="mt-4 line-clamp-3 text-sm leading-7 text-mist sm:text-base">
+										{featuredBlog.excerpt}
+									</p>
+
+									<div className="mt-6 flex items-center justify-between gap-4 border-t border-black/5 pt-5">
+										<div className="min-w-0">
+											<p className="truncate text-sm font-semibold text-ink">
+												{featuredBlog.author.name}
+											</p>
+											<p className="mt-1 text-xs text-mist">
+												{featuredBlog.author.role}
+											</p>
+										</div>
+
+										<span className="inline-flex shrink-0 items-center gap-2 text-sm font-semibold text-teal-600">
+											Read Article
+											<ArrowRight
+												size={16}
+												className="transition-transform group-hover:translate-x-1"
+											/>
+										</span>
+									</div>
+								</div>
+							</Link>
+						</motion.article>
+					</Reveal>
+
+					{/* Trending articles */}
+					<div>
+						<Reveal>
+							<div className="mb-6 flex items-center justify-between">
+								<h3 className="font-display text-xl font-semibold text-ink sm:text-2xl">
+									What&apos;s Trending?
+								</h3>
+
+								<span className="rounded-full bg-teal-500/10 px-3 py-1 text-xs font-semibold text-teal-600">
+									Latest reads
+								</span>
+							</div>
+						</Reveal>
+
+						<div className="space-y-5">
+							{trendingBlogs.map((blog, index) => (
+								<Reveal key={blog.id} delay={index * 0.08}>
+									<motion.article
+										{...cardMotion}
+										className="group overflow-hidden rounded-2xl border border-black/5 bg-white p-3 shadow-soft sm:p-4"
+									>
+										<Link
+											href={`/blogs/${blog.slug}`}
+											className="flex gap-4 sm:gap-5"
+										>
+											<div className="relative aspect-square w-28 shrink-0 overflow-hidden rounded-xl bg-black/5 sm:w-36">
+												<Image
+													src={blog.image}
+													alt={blog.imageAlt}
+													fill
+													sizes="(max-width: 640px) 112px, 144px"
+													className="object-cover transition-transform duration-500 group-hover:scale-105"
+												/>
+											</div>
+
+											<div className="flex min-w-0 flex-1 flex-col justify-center py-1">
+												<span className="mb-2 text-xs font-semibold uppercase tracking-wide text-teal-600">
+													{blog.category}
+												</span>
+
+												<h4 className="line-clamp-2 font-display text-base font-semibold leading-snug text-ink transition-colors group-hover:text-teal-600 sm:text-lg">
+													{blog.title}
+												</h4>
+
+												<p className="mt-2 line-clamp-2 text-sm leading-6 text-mist">
+													{blog.excerpt}
+												</p>
+
+												<div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-mist">
+													<span>
+														{formatDate(
+															blog.publishedAt,
+														)}
+													</span>
+													<span className="flex items-center gap-1">
+														<Clock3 size={13} />
+														{blog.readTime} min read
+													</span>
+												</div>
+											</div>
+										</Link>
+									</motion.article>
+								</Reveal>
+							))}
+
+							{trendingBlogs.length === 0 && (
+								<p className="rounded-2xl border border-black/5 p-6 text-sm text-mist">
+									No trending articles available yet.
+								</p>
+							)}
+						</div>
+
+						<Link
+							href="/blogs"
+							className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-ink transition-colors hover:text-teal-600 sm:hidden"
+						>
+							See More Articles
+							<ArrowRight size={16} />
+						</Link>
+					</div>
+				</div>
+			</div>
+		</section>
+	);
 }
