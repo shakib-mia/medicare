@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import DoctorProfileSidebar from "@/components/DoctorProfileSidebar";
 import DoctorProfileInfo from "@/components/DoctorProfileInfo";
@@ -7,33 +8,43 @@ import PromoBanner from "@/components/PromoBanner";
 import Footer from "@/components/Footer";
 import { getDoctorBySlug, getAllDoctorSlugs } from "@/lib/doctors";
 
+type PageProps = {
+	params: Promise<{ id: string }>;
+};
+
 export function generateStaticParams() {
 	return getAllDoctorSlugs().map((id) => ({ id }));
 }
 
-export function generateMetadata({
+export async function generateMetadata({
 	params,
-}: {
-	params: { id: string };
-}): Metadata {
-	const doctor = getDoctorBySlug(params.id);
+}: PageProps): Promise<Metadata> {
+	const { id } = await params;
+	const doctor = getDoctorBySlug(id);
+
+	if (!doctor) {
+		return {
+			title: "Doctor Not Found — Medicare",
+			description: "The requested doctor profile could not be found.",
+		};
+	}
+
 	return {
 		title: `${doctor.name} — Medicare`,
-		description: `${doctor.name}, ${doctor.role}. View qualifications, specialities, and book an appointment.`,
+		description: `${doctor.name}, ${doctor.role}. View qualifications, specialities, experience, and weekly availability.`,
 	};
 }
 
-export default function DoctorProfilePage({
-	params,
-}: {
-	params: { id: string };
-}) {
-	const doctor = getDoctorBySlug(params.id);
+export default async function DoctorProfilePage({ params }: PageProps) {
+	const { id } = await params;
+	const doctor = getDoctorBySlug(id);
+
+	if (!doctor) notFound();
 
 	return (
 		<main className="overflow-x-hidden">
 			<section className="section-max container-px pb-12 pt-24">
-				<div className="grid lg:grid-cols-[340px_1fr] gap-12">
+				<div className="grid gap-12 lg:grid-cols-[340px_1fr]">
 					<DoctorProfileSidebar doctor={doctor} />
 					<DoctorProfileInfo doctor={doctor} />
 				</div>

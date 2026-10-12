@@ -2,69 +2,90 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { CalendarCheck, Phone, MessageCircle, Star, Smile, Ear, HeartHandshake } from "lucide-react";
-import { Doctor } from "@/lib/doctors";
+import Link from "next/link";
+import { CalendarCheck, Smile, Ear, HeartHandshake } from "lucide-react";
+import type { Doctor } from "@/lib/doctors";
 import Reveal from "./Reveal";
 
 const traitIcons: Record<string, typeof Smile> = {
-  Friendly: Smile,
-  "Good Listener": Ear,
-  Patient: HeartHandshake,
+	Friendly: Smile,
+	"Good Listener": Ear,
+	Patient: HeartHandshake,
 };
 
 export default function DoctorProfileSidebar({ doctor }: { doctor: Doctor }) {
-  return (
-    <Reveal>
-      <div className="bg-teal-50/70 rounded-2xl p-8 flex flex-col items-center text-center">
-        <div className="relative w-40 h-40 rounded-full overflow-hidden">
-          <Image src={doctor.img} alt={doctor.name} fill sizes="160px" className="object-cover" />
-        </div>
+	const specialties = doctor.specialities?.slice(0, 2).join(" · ");
+	const availableDays = doctor.weeklyAvailability.length;
 
-        <span className="mt-4 bg-teal-500 text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">
-          <Star size={11} className="fill-white" /> 5.0
-        </span>
+	return (
+		<Reveal>
+			<div className="flex flex-col items-center rounded-2xl bg-teal-50/70 p-8 text-center">
+				<div className="relative h-40 w-40 overflow-hidden rounded-full">
+					<Image
+						src={doctor.img}
+						alt={doctor.name}
+						fill
+						sizes="160px"
+						className="object-cover"
+					/>
+				</div>
 
-        <div className="flex gap-3 mt-7">
-          <ActionIcon icon={CalendarCheck} />
-          <ActionIcon icon={Phone} />
-          <ActionIcon icon={MessageCircle} />
-        </div>
+				<h1 className="mt-4 line-clamp-2 font-display text-lg font-semibold leading-snug text-ink">
+					{doctor.name}
+				</h1>
 
-        <div className="font-display font-bold text-2xl text-ink mt-7">{doctor.priceRange}</div>
-        <p className="text-mist text-sm mt-1">Online / Offline</p>
+				<p className="mt-1 text-sm font-medium text-teal-700">
+					{doctor.role}
+				</p>
 
-        <motion.a
-          href="#book"
-          whileHover={{ y: -2 }}
-          whileTap={{ scale: 0.97 }}
-          className="w-full bg-teal-500 hover:bg-teal-600 transition-colors text-white text-sm font-semibold rounded-lg py-3.5 mt-6"
-        >
-          Book Appointment
-        </motion.a>
+				{specialties && (
+					<p className="mt-3 text-sm leading-relaxed text-mist">
+						{specialties}
+					</p>
+				)}
 
-        <div className="flex flex-wrap justify-center gap-3 mt-8">
-          {doctor.traits?.map((t) => {
-            const Icon = traitIcons[t] ?? Smile;
-            return (
-              <span
-                key={t}
-                className="flex items-center gap-2 border border-teal-100 bg-white text-ink text-xs font-medium px-3.5 py-2 rounded-lg"
-              >
-                <Icon size={14} className="text-teal-500" />
-                {t}
-              </span>
-            );
-          })}
-        </div>
-      </div>
-    </Reveal>
-  );
-}
+				{doctor.degree && (
+					<p className="mt-2 text-xs leading-relaxed text-mist">
+						{doctor.degree}
+					</p>
+				)}
 
-function ActionIcon({ icon: Icon }: { icon: typeof CalendarCheck }) {
-  return (
-    <span className="w-11 h-11 rounded-lg bg-teal-100/70 flex items-center justify-center text-teal-600">
-      <Icon size={17} />
-    </span>
-  );
+				{doctor.priceRange && (
+					<p className="mt-5 font-display text-xl font-bold text-ink">
+						{doctor.priceRange}
+					</p>
+				)}
+
+				<p className="my-2 flex items-center gap-2 text-sm text-mist">
+					<CalendarCheck size={16} className="text-teal-600" />
+					Available {availableDays} days a week
+				</p>
+
+				<motion.a
+					href={`tel:${doctor.phone}`}
+					whileHover={{ y: -2 }}
+					whileTap={{ scale: 0.98 }}
+					className="flex w-full items-center justify-center gap-2 rounded-lg border border-teal-200 bg-white py-3.5 text-sm font-semibold text-teal-700 transition-colors hover:bg-teal-50"
+				>
+					Call to Book
+				</motion.a>
+
+				<div className="mt-8 flex flex-wrap justify-center gap-3">
+					{doctor.traits?.map((trait) => {
+						const Icon = traitIcons[trait] ?? Smile;
+
+						return (
+							<span
+								key={trait}
+								className="flex items-center gap-2 rounded-lg border border-teal-100 bg-white px-3.5 py-2 text-xs font-medium text-ink"
+							>
+								<Icon size={14} className="text-teal-500" />
+								{trait}
+							</span>
+						);
+					})}
+				</div>
+			</div>
+		</Reveal>
+	);
 }
