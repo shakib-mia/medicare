@@ -18,7 +18,7 @@ export default function DoctorProfileSidebar({ doctor }: { doctor: Doctor }) {
 	const availableDays = doctor.weeklyAvailability.length;
 
 	return (
-		<Reveal>
+		<Reveal className="sticky top-24">
 			<div className="flex flex-col items-center rounded-2xl bg-teal-50/70 p-8 text-center">
 				<div className="relative h-40 w-40 overflow-hidden rounded-full">
 					<Image

@@ -50,7 +50,7 @@ export default function Hero() {
 	return (
 		<section
 			id="home"
-			className="relative overflow-hidden pt-8 pb-16 sm:pt-32 sm:pb-20"
+			className="relative overflow-hidden pt-32 pb-16 sm:pt-32 sm:pb-20"
 		>
 			{/* Soft background accent */}
 			<div
@@ -98,10 +98,8 @@ export default function Hero() {
 						</motion.div>
 
 						{/* Headline */}
-						<h1 className="max-w-xl font-display text-4xl font-bold leading-[1.1] tracking-tight text-ink sm:text-5xl lg:text-[3.75rem] xl:text-[4.25rem]">
-							Your Health,
-							<br />
-							Our{" "}
+						<h1 className="max-w-xl font-display text-4xl font-bold leading-[1.1] tracking-tight text-ink sm:text-5xl lg:text-[3.75rem] xl:text-[4.5rem]">
+							Your Health, Our{" "}
 							<span className="relative inline-block text-teal-500">
 								Heartfelt
 								<motion.svg
@@ -139,8 +137,7 @@ export default function Hero() {
 										}}
 									/>
 								</motion.svg>
-							</span>
-							<br />
+							</span>{" "}
 							Care.
 						</h1>
 

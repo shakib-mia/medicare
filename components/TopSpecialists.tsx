@@ -19,21 +19,25 @@ const specialists = [
 		name: "Dr. Travis Oman",
 		role: "Ophthalmologist",
 		img: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?q=80&w=600&auto=format&fit=crop",
+		phone: "+1 (555) 123-4567",
 	},
 	{
 		name: "Dr. Annah Ray",
 		role: "Dentist",
 		img: "https://images.unsplash.com/photo-1594824476967-48c8b964273f?q=80&w=600&auto=format&fit=crop",
+		phone: "+1 (555) 987-6543",
 	},
 	{
 		name: "Dr. Richard Brook",
 		role: "Gastroenterologist",
 		img: "https://images.unsplash.com/photo-1537368910025-700350fe46c7?q=80&w=600&auto=format&fit=crop",
+		phone: "+1 (555) 246-8101",
 	},
 	{
 		name: "Dr. Vivian Monroe",
 		role: "Pediatric Surgeon",
 		img: "https://images.unsplash.com/photo-1651008376811-b90baee60c1f?q=80&w=600&auto=format&fit=crop",
+		phone: "+1 (555) 135-7913",
 	},
 ];
 
@@ -187,7 +191,7 @@ export default function TopSpecialists() {
 
 									<div className="mt-auto pt-5">
 										<motion.a
-											href="#appointment"
+											href={"callto:" + specialist.phone}
 											whileTap={
 												shouldReduceMotion
 													? undefined

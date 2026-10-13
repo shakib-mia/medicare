@@ -8,11 +8,11 @@ export default function DoctorSearchHero() {
 	const [who, setWho] = useState<"myself" | "someone">("myself");
 
 	return (
-		<section className="pt-14 sm:pt-32 pb-10">
+		<section className="pt-20 sm:pt-32 pb-10">
 			<div className="section-max container-px">
 				<Reveal className="text-center max-w-2xl mx-auto">
 					<h1 className="font-display font-bold text-3xl sm:text-4xl lg:text-[2.75rem] text-ink leading-tight">
-						Search for Docter , Make an Appointment
+						Search for Doctor, Make an Appointment
 					</h1>
 					<p className="text-mist mt-4 text-sm sm:text-base">
 						Discover the best doctors, clinic, hospitals, nearest

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
 	title: "Medicare — Your Health Comes First",
@@ -31,6 +32,7 @@ export default function RootLayout({
 			<body className="font-body antialiased">
 				<Navbar />
 				<SmoothScroll>{children}</SmoothScroll>
+				<Footer />
 			</body>
 		</html>
 	);

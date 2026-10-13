@@ -13,7 +13,7 @@ export default function OfficeAndAbout({ doctor }: { doctor: Doctor }) {
 	const short = about.length > 340 ? `${about.slice(0, 340).trim()}…` : about;
 
 	return (
-		<div className="mt-16 grid gap-10 lg:grid-cols-[400px_1fr]">
+		<div className="mt-16 grid gap-10 lg:grid-cols-[340px_1fr]">
 			<Reveal>
 				<div className="rounded-2xl bg-teal-50/70 p-6">
 					<h2 className="mb-4 font-display text-xl font-bold text-ink">

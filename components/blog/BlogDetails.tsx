@@ -105,10 +105,10 @@ export default function BlogDetails({ blog }: BlogDetailsProps) {
 
 			{/* Article body */}
 			<section className="section-max container-px py-12 sm:py-16">
-				<div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[minmax(0,1fr)_260px] lg:gap-16">
+				<div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[minmax(0,1fr)_260px] lg:gap-10">
 					<article className="min-w-0">
 						<Reveal>
-							<div className="space-y-6">
+							<div className="space-y-6 text-justify">
 								{blog.content.map((block, index) =>
 									block.type === "heading" ? (
 										<h2
@@ -168,7 +168,7 @@ export default function BlogDetails({ blog }: BlogDetailsProps) {
 					</article>
 
 					{/* Article sidebar */}
-					<aside className="h-fit rounded-2xl border border-black/5 bg-white p-5 shadow-soft lg:sticky lg:top-24">
+					<aside className="h-fit rounded-2xl border border-black/5 bg-white p-5 shadow-card lg:sticky lg:top-24">
 						<p className="text-xs font-semibold uppercase tracking-[0.16em] text-teal-600">
 							About this article
 						</p>

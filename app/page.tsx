@@ -22,7 +22,6 @@ export default function Home() {
 			<CTABanner />
 			<BlogTrending />
 			<PartnerLogos />
-			<Footer />
 		</main>
 	);
 }

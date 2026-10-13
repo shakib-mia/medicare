@@ -53,7 +53,6 @@ export default async function DoctorProfilePage({ params }: PageProps) {
 			</section>
 
 			<PromoBanner />
-			<Footer />
 		</main>
 	);
 }

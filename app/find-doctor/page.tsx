@@ -28,7 +28,6 @@ export default function FindDoctorPage() {
 			</section>
 
 			<PromoBanner />
-			<Footer />
 		</main>
 	);
 }
