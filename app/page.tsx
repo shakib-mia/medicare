@@ -5,10 +5,8 @@ import Departments from "@/components/Departments";
 import TopSpecialists from "@/components/TopSpecialists";
 import Benefits from "@/components/Benefits";
 import Testimonials from "@/components/Testimonials";
-import CTABanner from "@/components/CTABanner";
 import BlogTrending from "@/components/BlogTrending";
 import PartnerLogos from "@/components/PartnerLogos";
-import Footer from "@/components/Footer";
 
 export default function Home() {
 	return (
@@ -19,7 +17,7 @@ export default function Home() {
 			<TopSpecialists />
 			<Benefits />
 			<Testimonials />
-			<CTABanner />
+			{/* <CTABanner /> */}
 			<BlogTrending />
 			<PartnerLogos />
 		</main>

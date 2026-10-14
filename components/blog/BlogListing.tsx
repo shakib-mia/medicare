@@ -64,7 +64,7 @@ export default function BlogListing() {
 		<main className="min-h-screen bg-white">
 			{/* Hero */}
 			<section className="border-b border-black/5 bg-[#f7fbfa]">
-				<div className="section-max container-px py-16 sm:py-20 lg:py-24">
+				<div className="section-max container-px pt-24 pb-16 sm:py-20 md:pt-24 lg:py-24">
 					<Reveal>
 						<div className="mx-auto max-w-3xl text-center">
 							<p className="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-teal-600">

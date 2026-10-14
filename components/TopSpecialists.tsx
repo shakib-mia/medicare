@@ -119,105 +119,112 @@ export default function TopSpecialists() {
 				</Reveal>
 
 				{/* Specialists carousel */}
-				<div
-					ref={scroller}
-					role="region"
-					aria-label="Medical specialists"
-					tabIndex={0}
-					className="flex snap-x snap-mandatory gap-5 overflow-x-auto overflow-y-hidden pb-5 pt-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-4 sm:gap-6"
-					style={{
-						scrollbarWidth: "none",
-						scrollBehavior: shouldReduceMotion ? "auto" : "smooth",
-					}}
-				>
-					{specialists.map((specialist, index) => (
-						<Reveal
-							key={specialist.name}
-							delay={shouldReduceMotion ? 0 : index * 0.08}
-							className="w-[min(78vw,280px)] shrink-0 snap-start sm:w-[260px] lg:w-[calc((100%-4.5rem)/4)]"
-						>
-							<motion.article
-								data-specialist-card
-								whileHover={
-									shouldReduceMotion
-										? undefined
-										: {
-												y: -5,
-												transition: {
-													duration: 0.3,
-													ease,
-												},
-											}
-								}
-								className="group h-full overflow-hidden rounded-2xl border border-teal-50 bg-white shadow-sm transition-[box-shadow,border-color] duration-300 hover:border-teal-100 hover:shadow-card sm:rounded-[1.5rem]"
+				<div className="overflow-hidden">
+					<div
+						ref={scroller}
+						role="region"
+						aria-label="Medical specialists"
+						tabIndex={0}
+						className="flex snap-x snap-mandatory gap-0 overflow-x-auto overflow-y-hidden pb-5 pt-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-4 sm:gap-6"
+						style={{
+							scrollbarWidth: "none",
+							scrollBehavior: shouldReduceMotion
+								? "auto"
+								: "smooth",
+						}}
+					>
+						{specialists.map((specialist, index) => (
+							<Reveal
+								key={specialist.name}
+								delay={shouldReduceMotion ? 0 : index * 0.08}
+								className="w-full min-w-0 shrink-0 snap-start sm:w-[260px] lg:w-[calc((100%-4.5rem)/4)]"
 							>
-								{/* Doctor image */}
-								<div className="relative aspect-[4/3] overflow-hidden bg-teal-50">
-									<Image
-										src={specialist.img}
-										alt={specialist.name}
-										fill
-										sizes="(max-width: 640px) 78vw, (max-width: 1024px) 260px, 22vw"
-										className="object-cover object-center transition-transform duration-[1000ms] ease-out group-hover:scale-[1.04] motion-reduce:transform-none"
-									/>
-
-									<div className="absolute inset-0 bg-gradient-to-t from-slate-950/25 via-transparent to-transparent opacity-70" />
-
-									{/* Rating badge */}
-									<div className="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full border border-white/70 bg-white/90 px-2.5 py-1.5 text-[11px] font-bold text-ink shadow-sm backdrop-blur-md">
-										<Star
-											size={12}
-											className="fill-teal-500 text-teal-500"
+								<motion.article
+									data-specialist-card
+									whileHover={
+										shouldReduceMotion
+											? undefined
+											: {
+													y: -5,
+													transition: {
+														duration: 0.3,
+														ease,
+													},
+												}
+									}
+									className="group h-full overflow-hidden rounded-2xl border border-teal-50 bg-white shadow-sm transition-[box-shadow,border-color] duration-300 hover:border-teal-100 hover:shadow-card sm:rounded-[1.5rem]"
+								>
+									{/* Doctor image */}
+									<div className="relative aspect-[4/3] overflow-hidden bg-teal-50">
+										<Image
+											src={specialist.img}
+											alt={specialist.name}
+											fill
+											sizes="(max-width: 639px) 100vw, (max-width: 1023px) 260px, 22vw"
+											className="object-cover object-center transition-transform duration-[1000ms] ease-out group-hover:scale-[1.04] motion-reduce:transform-none"
 										/>
-										5.0
-									</div>
 
-									{/* Specialty badge */}
-									<div className="absolute bottom-3 left-3 inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-slate-950/35 px-2.5 py-1.5 text-[10px] font-medium text-white backdrop-blur-md">
-										<Stethoscope size={12} />
-										Specialist
-									</div>
-								</div>
+										<div className="absolute inset-0 bg-gradient-to-t from-slate-950/25 via-transparent to-transparent opacity-70" />
 
-								{/* Doctor details */}
-								<div className="flex h-[190px] flex-col p-4 sm:p-5">
-									<h3 className="font-display text-base font-bold leading-snug text-ink">
-										{specialist.name}
-									</h3>
-
-									<p className="mt-1.5 text-xs leading-5 text-mist sm:text-sm">
-										{specialist.role}
-									</p>
-
-									<div className="mt-auto pt-5">
-										<motion.a
-											href={"callto:" + specialist.phone}
-											whileTap={
-												shouldReduceMotion
-													? undefined
-													: { scale: 0.985 }
-											}
-											transition={{
-												duration: 0.2,
-												ease,
-											}}
-											className="group/button flex w-full items-center justify-center gap-2 rounded-xl bg-teal-500 px-4 py-3 text-xs font-semibold text-white transition-colors duration-300 hover:bg-teal-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2"
-										>
-											Book an Appointment
-											<ArrowUpRight
-												size={15}
-												className="transition-transform duration-300 group-hover/button:translate-x-0.5 group-hover/button:-translate-y-0.5 motion-reduce:transform-none"
+										{/* Rating badge */}
+										<div className="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full border border-white/70 bg-white/90 px-2.5 py-1.5 text-[11px] font-bold text-ink shadow-sm backdrop-blur-md">
+											<Star
+												size={12}
+												className="fill-teal-500 text-teal-500"
 											/>
-										</motion.a>
+											5.0
+										</div>
 
-										<p className="mt-3 text-center text-[11px] text-mist">
-											Professional, patient-focused care
-										</p>
+										{/* Specialty badge */}
+										<div className="absolute bottom-3 left-3 inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-slate-950/35 px-2.5 py-1.5 text-[10px] font-medium text-white backdrop-blur-md">
+											<Stethoscope size={12} />
+											Specialist
+										</div>
 									</div>
-								</div>
-							</motion.article>
-						</Reveal>
-					))}
+
+									{/* Doctor details */}
+									<div className="flex h-[190px] flex-col p-4 sm:p-5">
+										<h3 className="font-display text-base font-bold leading-snug text-ink">
+											{specialist.name}
+										</h3>
+
+										<p className="mt-1.5 text-xs leading-5 text-mist sm:text-sm">
+											{specialist.role}
+										</p>
+
+										<div className="mt-auto pt-5">
+											<motion.a
+												href={
+													"callto:" + specialist.phone
+												}
+												whileTap={
+													shouldReduceMotion
+														? undefined
+														: { scale: 0.985 }
+												}
+												transition={{
+													duration: 0.2,
+													ease,
+												}}
+												className="group/button flex w-full items-center justify-center gap-2 rounded-xl bg-teal-500 px-4 py-3 text-xs font-semibold text-white transition-colors duration-300 hover:bg-teal-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2"
+											>
+												Book an Appointment
+												<ArrowUpRight
+													size={15}
+													className="transition-transform duration-300 group-hover/button:translate-x-0.5 group-hover/button:-translate-y-0.5 motion-reduce:transform-none"
+												/>
+											</motion.a>
+
+											<p className="mt-3 text-center text-[11px] text-mist">
+												Professional, patient-focused
+												care
+											</p>
+										</div>
+									</div>
+								</motion.article>
+							</Reveal>
+						))}
+					</div>
 				</div>
 			</div>
 		</section>

@@ -286,7 +286,7 @@ export default function Hero() {
 								repeatType: "loop",
 								ease: "easeInOut",
 							}}
-							className="absolute -left-4 top-10 z-20 flex items-center gap-3 rounded-2xl border border-white bg-white px-4 py-3.5 shadow-card sm:-left-10 sm:top-14 sm:px-5 sm:py-4"
+							className="absolute -left-4 -top-10 z-20 flex items-center gap-3 rounded-2xl border border-white bg-white px-4 py-3.5 shadow-card sm:-left-10 sm:top-14 sm:px-5 sm:py-4"
 						>
 							<div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-teal-50 text-teal-500">
 								<Clock3 size={22} strokeWidth={1.7} />
