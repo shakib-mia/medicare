@@ -55,10 +55,9 @@ export default function DoctorResults() {
 		</div>
 	);
 }
+const MotionLink = motion.create(Link);
 
 function DoctorCard({ doctor }: { doctor: Doctor }) {
-	const MotionLink = motion.create(Link);
-
 	return (
 		<MotionLink
 			href={`/find-doctor/${doctor.slug}`}
@@ -92,13 +91,13 @@ function FeaturedCard({ doctor }: { doctor: Doctor }) {
 			whileHover={{ y: -4 }}
 			className="relative bg-teal-500 rounded-2xl p-6 sm:p-7 flex flex-col sm:flex-row sm:items-center gap-6 overflow-hidden"
 		>
-			<motion.a
+			<MotionLink
 				whileHover={{ scale: 1.04 }}
 				href={`/find-doctor/${doctor.slug}`}
 				className="absolute top-5 right-5 bg-white/95 text-teal-600 text-xs font-semibold px-4 py-2 rounded-full"
 			>
 				View Profile
-			</motion.a>
+			</MotionLink>
 
 			<div className="flex items-center gap-4 sm:shrink-0">
 				<div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden shrink-0">
